@@ -9,8 +9,8 @@ def index():
 
 @app.route("/current")
 def current_weather():
-    pass
+    return render_template("current.html")
 
 @app.route("/forecast")
 def forecast_weather():
-    pass
+    return render_template("forecast.html")
