@@ -6,3 +6,11 @@ from app import app
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/current")
+def current_weather():
+    pass
+
+@app.route("/forecast")
+def forecast_weather():
+    pass
