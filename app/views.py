@@ -2,17 +2,15 @@ from os import path
 from flask import render_template
 
 from app import app
-
+from app.forms import WeatherForm
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/current")
+@app.route("/current", methods=["GET", "POST"])
 def current_weather():
-
-    # check reading config
-    api_key = app.config["OPEN_WEATHER_API_KEY"]
-    return render_template("current.html")
+    weather_form = WeatherForm()
+    return render_template("current.html", weather_form=weather_form)
 
 @app.route("/forecast")
 def forecast_weather():
