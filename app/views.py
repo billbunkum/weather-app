@@ -1,5 +1,5 @@
 from os import path
-from flask import render_template
+from flask import render_template, request
 
 from app import app
 from app.forms import WeatherForm
@@ -9,7 +9,12 @@ def index():
 
 @app.route("/current", methods=["GET", "POST"])
 def current_weather():
-    weather_form = WeatherForm()
+    weather_form = WeatherForm(request.form)
+
+    if request.method == "POST" and weather_form.validate():
+        # do stuff if form is valid
+        pass
+
     return render_template("current.html", weather_form=weather_form)
 
 @app.route("/forecast")
