@@ -7,5 +7,5 @@ from wtforms import (
 class WeatherForm(Form):
     city = StringField("City", validators=[validators.DataRequired()])
     country_code = StringField("Country Code", 
-        validators=[validators.DataRequired()],
+        validators=[],
         render_kw={"maxlength": 2})
