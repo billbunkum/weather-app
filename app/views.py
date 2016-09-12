@@ -9,6 +9,9 @@ def index():
 
 @app.route("/current")
 def current_weather():
+
+    # check reading config
+    api_key = app.config["OPEN_WEATHER_API_KEY"]
     return render_template("current.html")
 
 @app.route("/forecast")
