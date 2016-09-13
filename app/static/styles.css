@@ -17,9 +17,13 @@ body {
 }
 
 .page-footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
+    background-color: #fff;
+}
+.page-footer hr {
+    margin-top: 0;
 }
 
 .weather-container {

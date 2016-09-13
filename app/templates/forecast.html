@@ -2,8 +2,17 @@
 
 {% block content %}
     <h2>
-        5 Day Weather Forecast
+        16 Day Weather Forecast
     </h2>
     <hr>
     {% include "includes/weather-form.html" %}
+    
+    {% if weather_list %}
+        <div class="weather-container">
+            <h3>Weather forecast for the city of {{ city }}</h3>
+            <div class="row">
+                {% include "includes/weather-daily.html" %}
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

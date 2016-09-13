@@ -1,5 +1,5 @@
 from os import path
-from flask import render_template, request
+from flask import render_template, request, flash
 
 from app import app
 from app.forms import WeatherForm
@@ -21,8 +21,12 @@ def current_weather():
         city = weather_form.city.data
         country_code = weather_form.country_code.data
 
-        api = OpenWeatherAPI(app.config["OPEN_WEATHER_API_KEY"])
-        weather = api.get_current_weather(city, country_code)
+        try:
+            api = OpenWeatherAPI(app.config["OPEN_WEATHER_API_KEY"])
+            weather = api.get_current_weather(city, country_code)
+        except ValueError:
+            flash("City Not Found")
+
     return render_template("current.html",
         weather_form=weather_form,
         weather=weather,
@@ -32,9 +36,24 @@ def current_weather():
 @app.route("/forecast", methods=["GET", "POST"])
 def forecast_weather():
     weather_form = WeatherForm(request.form)
+    weather = {}
+    city = ""
+    country_code = ""
 
     if request.method == "POST" and weather_form.validate():
         # do stuff if form is valid
-        pass
+        city = weather_form.city.data
+        country_code = weather_form.country_code.data
 
-    return render_template("forecast.html", weather_form=weather_form)
+        try:
+            api = OpenWeatherAPI(app.config["OPEN_WEATHER_API_KEY"])
+            weather = api.get_daily_weather(city, country_code)
+        except ValueError:
+            weather = {}
+            flash("City Not Found")
+
+    return render_template("forecast.html",
+        weather_form=weather_form,
+        weather_list=weather.get("list"),
+        city=city,
+        country_code=country_code)
