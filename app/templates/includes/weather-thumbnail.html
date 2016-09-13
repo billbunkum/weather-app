@@ -6,7 +6,7 @@
             >
             {{weather['main']['temp']}} &deg;F
         </h4>
-        {{weather['weather'][0]['description'].title()}} at {{ weather['dt'] }}
+        {{weather['weather'][0]['description'].title()}} on {{ weather['dt']|timestamp_to_date }}
         <table class="table table-striped">
             <tbody>
                 <tr>
@@ -27,11 +27,11 @@
                 </tr>
                 <tr>
                     <td>Sunrise</td>
-                    <td>{{weather['sys']['sunrise']}}</td>
+                    <td>{{weather['sys']['sunrise']|timestamp_to_date(just_time=True)}}</td>
                 </tr>
                 <tr>
                     <td>Sunset</td>
-                    <td>{{weather['sys']['sunset']}}</td>
+                    <td>{{weather['sys']['sunset']|timestamp_to_date(just_time=True)}}</td>
                 </tr>
             </tbody>
         </table>
