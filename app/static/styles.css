@@ -3,6 +3,19 @@ body {
     padding-bottom: 70px;
 }
 
+.jumbotron-index {
+    text-align: center;
+}
+
+.jumbotron-index .row {
+    margin-top: 70px;
+}
+
+.jumbotron-index a {
+    font-size: 36px;
+    text-transform: uppercase;
+}
+
 .page-footer {
     position: absolute;
     bottom: 0;
