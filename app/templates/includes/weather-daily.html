@@ -8,7 +8,7 @@
                     >
                     {{item['temp']['day']}} &deg;F / {{item['temp']['night']}} &deg;F
                 </h4>
-                {{item['weather'][0]['description'].title()}} at {{ item['dt'] }}
+                {{item['weather'][0]['description'].title()}} on {{ item['dt']|timestamp_to_date }}
                 <table class="table table-striped">
                     <tbody>
                         <tr>
