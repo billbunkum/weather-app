@@ -1,31 +1,5 @@
-{% for item in weather_list %}
+{% for weather_item in weather_list %}
     <div class="col-md-3">
-        <div class="thumbnail">
-            <div class="caption">
-                <h4>
-                    <img src="http://openweathermap.org/img/w/{{item['weather'][0]['icon']}}.png"
-                        alt="{{item['weather'][0]['description']}}"
-                    >
-                    {{item['temp']['day']}} &deg;F / {{item['temp']['night']}} &deg;F
-                </h4>
-                {{item['weather'][0]['description'].title()}} on {{ item['dt']|timestamp_to_date }}
-                <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                            <td>Conditions</td>
-                            <td>{{item['weather'][0]['description']}}</td>
-                        </tr>
-                        <tr>
-                            <td>Pressure</td>
-                            <td>{{item['pressure']}}</td>
-                        </tr>
-                        <tr>
-                            <td>Humidity</td>
-                            <td>{{item['humidity']}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        {% include "includes/weather-thumbnail.html" %}
     </div>
 {% endfor %}

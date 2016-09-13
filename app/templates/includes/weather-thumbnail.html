@@ -1,38 +1,47 @@
 <div class="thumbnail">
     <div class="caption">
         <h4>
-            <img src="http://openweathermap.org/img/w/{{weather['weather'][0]['icon']}}.png"
-                alt="{{weather['weather'][0]['description']}}"
+            <img src="http://openweathermap.org/img/w/{{weather_item.icon}}.png"
+                alt="{{weather_item.description}}"
             >
-            {{weather['main']['temp']}} &deg;F
+            {{weather_item.temp}} &deg;F 
+            {% if weather_item.temp_night %}
+                / {{weather_item.temp_night}} &deg;F
+            {% endif %}
         </h4>
-        {{weather['weather'][0]['description'].title()}} on {{ weather['dt']|timestamp_to_date }}
+        {{weather_item.description.title()}} on {{ weather_item.dt|timestamp_to_date }}
         <table class="table table-striped">
             <tbody>
                 <tr>
-                    <td>Wind</td>
-                    <td>{{weather['wind']['speed']}}</td>
-                </tr>
-                <tr>
                     <td>Conditions</td>
-                    <td>{{weather['weather'][0]['description']}}</td>
+                    <td>{{weather_item.description}}</td>
                 </tr>
                 <tr>
                     <td>Pressure</td>
-                    <td>{{weather['main']['pressure']}}</td>
+                    <td>{{weather_item.pressure}}</td>
                 </tr>
                 <tr>
                     <td>Humidity</td>
-                    <td>{{weather['main']['humidity']}}</td>
+                    <td>{{weather_item.humidity}}</td>
                 </tr>
-                <tr>
-                    <td>Sunrise</td>
-                    <td>{{weather['sys']['sunrise']|timestamp_to_date(just_time=True)}}</td>
-                </tr>
-                <tr>
-                    <td>Sunset</td>
-                    <td>{{weather['sys']['sunset']|timestamp_to_date(just_time=True)}}</td>
-                </tr>
+                {% if weather_item.wind %}
+                    <tr>
+                        <td>Wind</td>
+                        <td>{{weather_item.wind}}</td>
+                    </tr>
+                {% endif %}
+                {% if weather_item.sunrise %}
+                    <tr>
+                        <td>Sunrise</td>
+                        <td>{{weather_item.sunrise|timestamp_to_date(just_time=True)}}</td>
+                    </tr>
+                {% endif %}
+                {% if weather_item.sunset %}
+                    <tr>
+                        <td>Sunset</td>
+                        <td>{{weather_item.sunset|timestamp_to_date(just_time=True)}}</td>
+                    </tr>
+                {% endif %}
             </tbody>
         </table>
     </div>
