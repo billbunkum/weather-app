@@ -4,9 +4,9 @@
             <img src="http://openweathermap.org/img/w/{{weather_item.icon}}.png"
                 alt="{{weather_item.description}}"
             >
-            {{weather_item.temp}} &deg;F 
+            {{weather_item.temp}} &deg;{{weather_form.units.data|f_or_c}}
             {% if weather_item.temp_night %}
-                / {{weather_item.temp_night}} &deg;F
+                / {{weather_item.temp_night}} &deg;{{weather_form.units.data|f_or_c}}
             {% endif %}
         </h4>
         {{weather_item.description.title()}} on {{ weather_item.dt|timestamp_to_date }}

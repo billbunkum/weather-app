@@ -1,12 +1,12 @@
 import requests
 
 class OpenWeatherAPI():
-    def __init__(self, api_key):
+    def __init__(self, api_key, units="imperial"):
         self.api_key = api_key
         self.base_url = "http://api.openweathermap.org/data/2.5"
         self.base_payload = {
             "appid": self.api_key,
-            "units": "imperial",
+            "units": units,
         }
 
     def get_payload(self, **kwargs):

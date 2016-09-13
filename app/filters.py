@@ -9,4 +9,11 @@ def timestamp_to_date(timestamp, just_time=False):
     if just_time:
         return date.strftime("%I:%M:%S %p")
     else:
-        return date.strftime("%m/%d/%Y") 
+        return date.strftime("%m/%d/%Y")
+
+@app.template_filter('f_or_c')
+def f_or_c(units):
+    if units == "imperial":
+        return "F"
+    else:
+        return "C"
