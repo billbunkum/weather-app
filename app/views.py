@@ -26,7 +26,7 @@ def current_weather():
                 units=weather_form.units.data)
             weather_item = api.get_current_weather(city, country_code)
         except ValueError:
-            flash("City Not Found")
+            flash("City Not Found", "warning")
 
     return render_template("current.html",
         weather_form=weather_form,
@@ -52,7 +52,7 @@ def forecast_weather():
             weather_list = api.get_daily_weather(city, country_code)
         except ValueError:
             weather_list = None
-            flash("City Not Found")
+            flash("City Not Found", "warning")
 
     return render_template("forecast.html",
         weather_form=weather_form,
